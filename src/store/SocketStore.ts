@@ -3,7 +3,7 @@ import {Player} from "../models/Player";
 import {Colors} from "../models/Colors";
 import {io, Socket} from "socket.io-client";
 
-const BACKEND_URL = "https://0888-79-172-16-96.ngrok-free.app"
+const BACKEND_URL = "https://a902-79-172-16-96.ngrok-free.app"
 
 class Store {
 
