@@ -3,7 +3,7 @@ import {Player} from "../models/Player";
 import {Cell} from "../models/Cell";
 import {Colors} from "../models/Colors";
 
-const BACKEND_URL = "http://localhost:5000"
+const BACKEND_URL = "https://0888-79-172-16-96.ngrok-free.app"
 
 class Store {
 
