@@ -3,7 +3,7 @@ import {Player} from "../models/Player";
 import {Colors} from "../models/Colors";
 import {io, Socket} from "socket.io-client";
 
-const BACKEND_URL = "https://95f8-79-172-16-96.ngrok-free.app"
+const BACKEND_URL = "https://telegram-bot-chess-backend.onrender.com"
 
 class Store {
 
