@@ -1,0 +1,44 @@
+.players {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-direction: column;
+  width: 150px;
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__btn {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 5px;
+    border-radius: 20px;
+  }
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+
+
+  &__name {
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.timer {
+  font-weight: 600;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+
+}

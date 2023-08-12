@@ -1,0 +1,47 @@
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &__img {
+    width: 90%;
+    height: 90%;
+  }
+}
+
+.white {
+  background-color: #EFEFEF;
+
+  &.highlighted {
+    background-color:  #BAAB92;
+  }
+}
+
+.black {
+  background-color: #8EB9B8;
+
+  &.highlighted {
+    background-color:  #81644D;
+  }
+}
+
+.selected {
+  background-color: #B53E24;
+}
+
+.available {
+  background-color: rgba(#363D34, 0.3);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+
+  &-figure {
+    background-color: #BBCB2B ;
+  }
+}

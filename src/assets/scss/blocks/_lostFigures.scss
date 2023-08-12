@@ -1,0 +1,21 @@
+.lost-figures {
+
+  &__list {
+      display: flex;
+      height: 60px;
+
+      &.right {
+         justify-content: right;
+      }
+  }
+
+
+  &__img {
+    width: 45px;
+    height: 45px;
+  }
+
+  &__img--black {
+    color: white;
+  }
+}

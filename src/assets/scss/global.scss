@@ -1,0 +1,31 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(16,65,98);
+  background: radial-gradient(circle, rgba(16,65,98,1) 0%, rgba(0,0,0,1) 100%);
+  font-family: 'Nunito', sans-serif;
+}
+
+.main {
+  display: flex;
+  gap: 100px;
+}
+
+.br-top-left {
+  border-top-left-radius: 20px;
+}
+
+.br-top-right {
+  border-top-right-radius: 20px;
+}
+
+.br-bottom-left {
+  border-bottom-left-radius: 20px;
+}
+
+.br-bottom-right {
+  border-bottom-right-radius: 20px;
+}

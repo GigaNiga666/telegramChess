@@ -1,0 +1,45 @@
+.modal-choice {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  background-color: rgba(black, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__window {
+    padding: 15px;
+    background: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 18px 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 18px 7px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 18px 7px rgba(0, 0, 0, 0.2);
+  }
+
+  &__list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+  }
+
+  &__btn {
+    background: lightgrey;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+
+    img {
+      width: 64px;
+      height: 64px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:active {
+      background-color: darkgray;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+}
