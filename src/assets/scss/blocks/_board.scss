@@ -3,6 +3,7 @@
   grid-template-columns: repeat(8, var(--board-cell-size));
   grid-template-rows: repeat(8, var(--board-cell-size));
 
+
   &__main {
     display: flex;
     flex-direction: column;
@@ -68,6 +69,24 @@
 
   &.reverse {
     direction: rtl;
+
+    .cell:nth-child(8) {
+      border-radius: 20px 0 0 0;
+    }
+
+    .cell:nth-child(1) {
+      border-radius: 0 20px 0 0;
+    }
+
+    .cell:nth-child(57) {
+      border-radius: 0 0 20px 0;
+
+    }
+
+    .cell:nth-child(64) {
+      border-radius: 0 0 0 20px;
+
+    }
   }
 
   &__header {

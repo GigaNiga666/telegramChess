@@ -177,13 +177,6 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                             <React.Fragment key={index}>
                                 {row.map((cell, i) =>
                                     <CellComponent
-                                        isBorder={
-                                            index === 0 && i === 0 ? 'br-top-left' :
-                                            index === 0 && i === 7 ? 'br-top-right' :
-                                            index === 7 && i === 0 ? 'br-bottom-left' :
-                                            index === 7 && i === 7 ? 'br-bottom-right' :
-                                            ''
-                                        }
                                         currentPlayer={currentPlayer}
                                         clickIsPossible={clickIsPossible}
                                         click={click}

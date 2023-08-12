@@ -8,12 +8,11 @@ interface ICellComponentProps {
     selected: boolean,
     click: (cell: Cell, selected?: boolean) => void,
     clickIsPossible: (cell: Cell) => boolean,
-    currentPlayer: Colors | null,
-    isBorder: string
+    currentPlayer: Colors | null
 }
 
 
-const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, isBorder}) => {
+const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer}) => {
 
     const figure = useRef<HTMLImageElement>(null)
 
@@ -97,7 +96,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
         <div
             onMouseDown={e => onMouseDown(e)}
             onMouseUp={onMouseUp}
-            className={`cell ${cell.color}${isBorder ? ` ${isBorder}` : ''}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
+            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
 
             {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}
             {cell.figure?.logo &&
