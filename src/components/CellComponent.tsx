@@ -30,8 +30,8 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
         Store.setFigure(figure.current)
 
         if (figure.current) {
-            startX = figure.current.x + 45
-            startY = figure.current.y + 45
+            startX = figure.current.getBoundingClientRect().x + figure.current.getBoundingClientRect().width / 2
+            startY = figure.current.getBoundingClientRect().y + figure.current.getBoundingClientRect().height / 2
             figure.current.style.position = 'relative'
             figure.current.style.zIndex = '1000'
             moveAt(e)
