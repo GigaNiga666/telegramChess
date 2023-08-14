@@ -1,4 +1,4 @@
-import React, {FC, useRef} from 'react';
+import React, {FC, TouchEventHandler, useRef} from 'react';
 import {Cell} from "../models/Cell";
 import Store from "../store/Store";
 import {Colors} from "../models/Colors";
@@ -19,13 +19,11 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
     let clicksOnFigure = 0
     let startX = 0, startY = 0
 
-    function onMouseDown(e: React.MouseEvent<HTMLDivElement>) {
-        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer) return false
+    function onMouseDown(e: React.MouseEvent) {
+        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0) return false
 
         click(cell)
 
-        document.onmouseover = onMouseOver
-        document.onmouseout = onMouseOut
         document.onmousemove = moveAt
         Store.setFigure(figure.current)
 
@@ -38,7 +36,6 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             figure.current.style.pointerEvents = 'none'
         }
     }
-
 
     function onMouseUp(e: any) {
         document.onmouseover = null
@@ -65,37 +62,68 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
         }
     }
 
-    function moveAt(e: any) {
+    function moveAt(e: MouseEvent | React.MouseEvent) {
         if (figure.current) {
             figure.current.style.transform = `translate(${e.clientX - startX}px, ${e.clientY - startY}px)`;
         }
     }
 
-    function onMouseOut(e: any) {
-        if (e.target.classList.contains('highlighted')) {
-            e.target.classList.remove('highlighted')
+    function onTouchStart(e : any) {
+        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer) return false
+
+        click(cell)
+
+        document.ontouchmove = touchMoveAt
+
+        if (figure.current) {
+            startX = figure.current.getBoundingClientRect().x + figure.current.getBoundingClientRect().width / 2
+            startY = figure.current.getBoundingClientRect().y + figure.current.getBoundingClientRect().height / 2
+            figure.current.style.position = 'relative'
+            figure.current.style.zIndex = '1000'
+            touchMoveAt(e)
+            figure.current.style.pointerEvents = 'none'
         }
     }
 
-    function onMouseOver(e: any) {
-        if (!e.target.closest('.cell')) {
-            onMouseUp(e)
-            return
+    function touchMoveAt(e : any) {
+        if (figure.current) {
+            figure.current.style.transform = `translate(${e.touches[0].clientX - startX}px, ${e.touches[0].clientY - startY}px)`;
+        }
+    }
+
+    function onTouchEnd(e : any) {
+        document.ontouchmove = null
+
+        const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+
+        if (target?.closest('.available-figure') || (target?.firstChild && target?.children[0].classList.contains('available'))) {
+            click(cell)
         }
 
-        const availableCell = e.target.firstChild
-        const targetCell = e.target.closest('.cell')
+        if (figure.current) {
+            if (!target?.closest('.selected')) {
+                click(cell, true)
+            } else if (clicksOnFigure === 1) {
+                clicksOnFigure = 0
+                click(cell, true)
+            } else {
+                clicksOnFigure += 1
+            }
+            figure.current.style.zIndex = '1'
+            figure.current.style.pointerEvents = 'unset'
+            figure.current.style.transform = `translate(0px, 0px)`;
 
-        if (targetCell && (e.target.closest('.available-figure') || (availableCell && availableCell.classList.contains('available')))) {
-            targetCell.classList.add('highlighted')
+            Store.setFigure(null)
         }
     }
 
 
     return (
         <div
-            onMouseDown={e => onMouseDown(e)}
+            onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
             className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
 
             {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}

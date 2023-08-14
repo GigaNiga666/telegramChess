@@ -96,6 +96,7 @@ export class Board {
         this.addRooks();
         this.addQueens();
 
+
         this.addKings()
     }
 }
