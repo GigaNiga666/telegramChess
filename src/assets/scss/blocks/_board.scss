@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(8, 12vw);
   grid-template-rows: repeat(8, 12vw);
-  border: black 2px solid;
+  border: var(--tg-theme-button-color) 2px solid;
   border-radius: 8px;
   overflow: hidden;
 
