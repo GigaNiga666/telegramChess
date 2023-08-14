@@ -114,82 +114,22 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
     return (
         <div className='board__main'>
             <ModalChoice currentPlayer={currentPlayer} visible={modal} onClick={spendAPawn}/>
-            <LostFiguresComponent position='left' lostFigures={playerColor === Colors.WHITE ? board.lostWhiteFigures : board.lostBlackFigures}/>
-            <div className="board__wrapper">
-                    <div className="board__notice">
-                        <ul className="board__list">
-                            <li className="board__item board__item--word">
-                                <span className="board__word">A</span>
-                                <span className="board__word">B</span>
-                                <span className="board__word">C</span>
-                                <span className="board__word">D</span>
-                                <span className="board__word">E</span>
-                                <span className="board__word">F</span>
-                                <span className="board__word">G</span>
-                                <span className="board__word">H</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">8</span>
-                                <span className="board__num">8</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">7</span>
-                                <span className="board__num">7</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">6</span>
-                                <span className="board__num">6</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">5</span>
-                                <span className="board__num">5</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">4</span>
-                                <span className="board__num">4</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">3</span>
-                                <span className="board__num">3</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">2</span>
-                                <span className="board__num">2</span>
-                            </li>
-                            <li className="board__item board__item--num">
-                                <span className="board__num">1</span>
-                                <span className="board__num">1</span>
-                            </li>
-                            <li className="board__item board__item--word">
-                                <span className="board__word">A</span>
-                                <span className="board__word">B</span>
-                                <span className="board__word">C</span>
-                                <span className="board__word">D</span>
-                                <span className="board__word">E</span>
-                                <span className="board__word">F</span>
-                                <span className="board__word">G</span>
-                                <span className="board__word">H</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className={`board ${playerColor === Colors.BLACK ? 'reverse' : ''}`}>
-                        {boardMapBasedOnColorPlayer().map((row, index) =>
-                            <React.Fragment key={index}>
-                                {row.map((cell, i) =>
-                                    <CellComponent
-                                        currentPlayer={currentPlayer}
-                                        clickIsPossible={clickIsPossible}
-                                        click={click}
-                                        selected={selectedCell?.y === cell.y && selectedCell.x === cell.x}
-                                        key={cell.id}
-                                        cell={cell}
-                                    />
-                                )}
-                            </React.Fragment>
+            <div className={`board ${playerColor === Colors.BLACK ? 'reverse' : ''}`}>
+                {boardMapBasedOnColorPlayer().map((row, index) =>
+                    <React.Fragment key={index}>
+                        {row.map((cell, i) =>
+                            <CellComponent
+                                currentPlayer={currentPlayer}
+                                clickIsPossible={clickIsPossible}
+                                click={click}
+                                selected={selectedCell?.y === cell.y && selectedCell.x === cell.x}
+                                key={cell.id}
+                                cell={cell}
+                            />
                         )}
-                    </div>
-                </div>
-            <LostFiguresComponent position='right' lostFigures={playerColor === Colors.BLACK ? board.lostWhiteFigures : board.lostBlackFigures}/>
+                    </React.Fragment>
+                )}
+            </div>
         </div>
 
     )

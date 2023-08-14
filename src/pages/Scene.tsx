@@ -75,17 +75,13 @@ const Scene = () => {
 
 
     return (
-        <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
+        <div className='main'>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
                 setBoard={setBoard}
                 currentPlayer={currentPlayer}
                 board={board}
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
-            />
-            <PlayersComponent
-                playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
-                currentPlayer={currentPlayer}
             />
         </div>
     );
