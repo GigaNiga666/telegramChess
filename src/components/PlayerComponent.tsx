@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {Colors} from "../models/Colors";
 import Timer from "./Timer";
 import Store from "../store/Store";
@@ -14,7 +14,7 @@ const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor,
     const name = useRef<any>(null)
     const [bgColor, setBgColor] = useState<string>(getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color'))
 
-    useRef(() => {
+    useEffect(() => {
         setBgColor(getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color'))
     },[getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color')])
 
