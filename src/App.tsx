@@ -9,8 +9,13 @@ const App = () => {
 
     const {tg} = useTelegram()
 
+    tg.onEvent('viewportChanged', () => {
+        if (!tg.isExpanded) tg.expand()
+    })
+
     useEffect(() => {
         tg.ready()
+        tg.expand()
     }, [])
 
     return (
