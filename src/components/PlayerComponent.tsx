@@ -15,16 +15,17 @@ const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor,
     const name = useRef<any>(null)
 
     const bgColor = getComputedStyle(document.body).getPropertyValue('--tg-theme-bg-color')
-    const [fgfgf, setDhgf] = useState('')
 
-    useEffect(() => {
-        setDhgf(bgColor)
-    },[bgColor])
+    if (bgColor === '#17212b') {
+        name.current.style.color = 'white'
+    }
+    else {
+        name.current.style.color = 'black'
+    }
 
     return (
         <div className='player'>
             <span ref={name} className="player__name">{playerName}</span>
-            {fgfgf}
             <Timer currentPlayer={currentPlayer} color={playerColor} firstStepIsDone={Store.firstStepIsDone}/>
         </div>
     );
