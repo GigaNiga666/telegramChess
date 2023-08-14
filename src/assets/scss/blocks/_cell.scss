@@ -12,22 +12,6 @@
     width: 90%;
     height: 90%;
   }
-
-  &:nth-child(1) {
-    border-radius: 20px 0 0 0;
-  }
-
-  &:nth-child(8) {
-    border-radius: 0 20px 0 0;
-  }
-
-  &:nth-child(57) {
-    border-radius: 0 0 0 20px;
-  }
-
-  &:nth-child(64) {
-    border-radius: 0 0 20px 0;
-  }
 }
 
 .white {
@@ -45,8 +29,8 @@
 .available {
   background-color: rgba(#363D34, 0.3);
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 40%;
+  height: 40%;
   pointer-events: none;
 
   &-figure {
