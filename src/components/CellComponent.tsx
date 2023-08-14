@@ -118,12 +118,23 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
     }
 
 
+    function onTouchCancel(e : any) {
+        if (figure.current) {
+            click(cell, true)
+            figure.current.style.zIndex = '1'
+            figure.current.style.pointerEvents = 'unset'
+            figure.current.style.transform = `translate(0px, 0px)`;
+            Store.setFigure(null)
+        }
+    }
+
     return (
         <div
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
+            onTouchCancel={onTouchCancel}
             className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
 
             {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}

@@ -30,6 +30,10 @@ const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor,
     return (
         <div className='player'>
             <span ref={name} className="player__name">{playerName}</span>
+            {
+                // @ts-ignore
+                tg.platform
+            }
             <Timer currentPlayer={currentPlayer} color={playerColor} firstStepIsDone={Store.firstStepIsDone}/>
         </div>
     );
