@@ -16,10 +16,10 @@ const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor,
 
     const bgColor = getComputedStyle(document.body).getPropertyValue('--tg-theme-bg-color')
 
-    if (bgColor === '#17212b') {
+    if (bgColor === '#17212b' && name.current) {
         name.current.style.color = 'white'
     }
-    else {
+    else if (name.current) {
         name.current.style.color = 'black'
     }
 
