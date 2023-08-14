@@ -112,7 +112,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
     }
 
     return (
-        <div className='board__main'>
+        <>
             <ModalChoice currentPlayer={currentPlayer} visible={modal} onClick={spendAPawn}/>
             <div className={`board ${playerColor === Colors.BLACK ? 'reverse' : ''}`}>
                 {boardMapBasedOnColorPlayer().map((row, index) =>
@@ -130,7 +130,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     </React.Fragment>
                 )}
             </div>
-        </div>
+        </>
 
     )
 };

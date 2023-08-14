@@ -1,10 +1,10 @@
 .board {
   display: grid;
-  grid-template-columns: repeat(8, 12vw);
-  grid-template-rows: repeat(8, 12vw);
-  border: var(--tg-theme-button-color) 2px solid;
-  border-radius: 8px;
-  overflow: hidden;
+  grid-template-columns: repeat(8, 12.5vw);
+  grid-template-rows: repeat(8, 12.5vw);
+  width: 100vw;
+  height: 100vw;
+
 
   &.reverse {
     direction: rtl;

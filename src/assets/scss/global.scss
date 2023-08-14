@@ -1,7 +1,4 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: var(--tg-theme-bg-color);
@@ -11,5 +8,8 @@ body {
 
 .main {
   display: flex;
-  gap: 100px;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }
