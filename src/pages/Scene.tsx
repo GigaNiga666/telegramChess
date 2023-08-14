@@ -4,7 +4,7 @@ import {Colors} from "../models/Colors";
 import BoardComponent from "../components/BoardComponent";
 import {useParams, useSearchParams, useNavigate} from 'react-router-dom'
 import socketStore from "../store/SocketStore";
-import PlayersComponent from "../components/PlayersComponent";
+import PlayerComponent from "../components/PlayerComponent";
 import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
 import SocketStore from "../store/SocketStore";
@@ -76,6 +76,7 @@ const Scene = () => {
 
     return (
         <div className='main'>
+            <PlayerComponent playerName={'Player 2'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
                 setBoard={setBoard}
@@ -83,6 +84,7 @@ const Scene = () => {
                 board={board}
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
             />
+            <PlayerComponent playerName={'Player 1'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
         </div>
     );
 };
