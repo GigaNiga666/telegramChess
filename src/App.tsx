@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Scene from "./pages/Scene";
 import Start from "./pages/Start";
+import {useTelegram} from "./hooks/useTelegram";
 
 
 const App = () => {
+
+    const {tg} = useTelegram()
+
+    useEffect(() => {
+        tg.ready()
+    }, [])
 
     return (
         <BrowserRouter>

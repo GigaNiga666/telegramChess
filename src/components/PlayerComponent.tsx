@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import {Colors} from "../models/Colors";
 import Timer from "./Timer";
 import Store from "../store/Store";
-import {useNavigate} from "react-router-dom";
+import {useTelegram} from "../hooks/useTelegram";
 
 interface IPlayerComponentProps {
     currentPlayer: Colors,
@@ -11,21 +11,19 @@ interface IPlayerComponentProps {
 }
 
 const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor, playerName}) => {
-
+    const {tg} = useTelegram()
     const name = useRef<any>(null)
+    const [colorScheme, setColorScheme] = useState<string>(tg.colorScheme)
 
-    const bgColor = getComputedStyle(document.body).getPropertyValue('--tg-theme-bg-color')
 
-    if (bgColor === '#17212b' && name.current) {
-        name.current.style.color = 'white'
-    }
-    else if (name.current) {
-        name.current.style.color = 'black'
-    }
+    tg.onEvent('themeChanged', () => {
+        setColorScheme(tg.colorScheme)
+    })
 
     return (
         <div className='player'>
             <span ref={name} className="player__name">{playerName}</span>
+            {colorScheme}
             <Timer currentPlayer={currentPlayer} color={playerColor} firstStepIsDone={Store.firstStepIsDone}/>
         </div>
     );
