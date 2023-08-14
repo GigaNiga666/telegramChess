@@ -2,6 +2,7 @@ import React, {FC, TouchEventHandler, useRef} from 'react';
 import {Cell} from "../models/Cell";
 import Store from "../store/Store";
 import {Colors} from "../models/Colors";
+import {useTelegram} from "../hooks/useTelegram";
 
 interface ICellComponentProps {
     cell: Cell,
@@ -15,12 +16,14 @@ interface ICellComponentProps {
 const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer}) => {
 
     const figure = useRef<HTMLImageElement>(null)
+    const {tg} = useTelegram()
 
     let clicksOnFigure = 0
     let startX = 0, startY = 0
 
     function onMouseDown(e: React.MouseEvent) {
-        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0) return false
+        //@ts-ignore
+        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0 || tg.platform !== 'tdesktop') return false
 
         click(cell)
 
