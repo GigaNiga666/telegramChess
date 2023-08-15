@@ -17,6 +17,7 @@ const Scene = () => {
     const [blockedBoard, setBlockedBoard] = useState<boolean>(true)
     const [searchParams, setSearchParams] = useSearchParams();
     const {tg} = useTelegram()
+    const [enemyUsername, setEnemyUsername] = useState<string | null>(null)
 
     const sessionId = useParams().id
 
@@ -34,10 +35,10 @@ const Scene = () => {
 
         socketStore.createSocket()
 
-        socketStore.socket?.emit('initGame', sessionId)
+        socketStore.socket?.emit('initGame', sessionId, tg.initDataUnsafe?.user?.username)
 
-        socketStore.addListener('newPlayerJoin', (msg: string) => {
-            console.log(msg)
+        socketStore.addListener('newPlayerJoin', (username: string) => {
+            setEnemyUsername(username)
         })
 
         socketStore.addListener('playerLeave', (msg: string) => {
@@ -76,7 +77,7 @@ const Scene = () => {
 
     return (
         <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
-            <PlayerComponent playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
+            <PlayerComponent playerName={enemyUsername ? enemyUsername : 'Ожидаем соперника...'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
                 setBoard={setBoard}
