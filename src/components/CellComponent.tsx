@@ -98,6 +98,8 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
 
         const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
 
+        tg.showAlert('hghghh')
+
         if (target?.closest('.available-figure') || (target?.firstChild && target?.children[0].classList.contains('available'))) {
             click(cell)
         }
@@ -136,7 +138,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             onMouseUp={onMouseUp}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            onTouchCancel={onTouchEnd}
+            onTouchCancel={onTouchCancel}
             className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
 
             {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}
