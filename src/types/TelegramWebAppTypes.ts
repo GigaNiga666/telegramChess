@@ -58,7 +58,7 @@ export declare namespace TelegramWebApps {
         /**
          * A method used to send data to the bot.
          */
-        showAlert(message : string) : void;
+        showAlert(message : any) : void;
         sendData(data: any): void;
         /**
          * A method that informs the Telegram app that the Web App is ready to be displayed.
