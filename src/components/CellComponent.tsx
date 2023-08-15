@@ -98,7 +98,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
 
         const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
 
-        tg.showAlert('hghghh')
+        tg.showAlert(target ? target.className : 'Eds')
 
         if (target?.closest('.available-figure') || (target?.firstChild && target?.children[0].classList.contains('available'))) {
             click(cell)
