@@ -125,6 +125,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                                 selected={selectedCell?.y === cell.y && selectedCell.x === cell.x}
                                 key={cell.id}
                                 cell={cell}
+                                coordsCell={`${i} ${index}`}
                             />
                         )}
                     </React.Fragment>

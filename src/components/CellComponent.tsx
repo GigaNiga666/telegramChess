@@ -9,11 +9,12 @@ interface ICellComponentProps {
     selected: boolean,
     click: (cell: Cell, selected?: boolean) => void,
     clickIsPossible: (cell: Cell) => boolean,
-    currentPlayer: Colors | null
+    currentPlayer: Colors | null,
+    coordsCell: string
 }
 
 
-const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer}) => {
+const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, coordsCell}) => {
 
     const figure = useRef<HTMLImageElement>(null)
     const {tg} = useTelegram()
@@ -22,7 +23,8 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
     let startX = 0, startY = 0
 
     function onMouseDown(e: React.MouseEvent) {
-        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0 || tg.platform !== 'tdesktop') return false
+    //|| tg.platform !== 'tdesktop'
+        if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0) return false
 
         click(cell)
 
@@ -99,8 +101,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
         const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
 
         if (target?.closest('.available-figure') || (target?.firstChild && target?.children[0].classList.contains('available'))) {
-            tg.showAlert(target?.children[0].classList.contains('available'))
-            click(cell)
+            click(cell.board.getCell(parseInt(target?.closest('.cell')?.id[0] as string, 10), parseInt(target?.closest('.cell')?.id[2] as string, 10)))
         }
 
         if (figure.current) {
@@ -133,6 +134,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
 
     return (
         <div
+            id={coordsCell}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             onTouchStart={onTouchStart}
