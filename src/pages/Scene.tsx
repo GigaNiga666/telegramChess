@@ -28,9 +28,8 @@ const Scene = () => {
 
         restart()
 
-        if (sessionId !== tg.initDataUnsafe?.user?.username && sessionId) {
+        if (sessionId !== tg.initDataUnsafe?.user?.username && sessionId)
             setEnemyUsername(sessionId)
-        }
 
         Store.setGameIsEnd(() => {
             console.log('game end')
