@@ -28,9 +28,6 @@ const Scene = () => {
 
         restart()
 
-        if (sessionId !== tg.initDataUnsafe?.user?.username && sessionId)
-            setEnemyUsername(sessionId)
-
         Store.setGameIsEnd(() => {
             console.log('game end')
             navigate('/')
@@ -49,10 +46,10 @@ const Scene = () => {
             console.log(msg)
         })
 
-        socketStore.addListener('startGame', (msg: string) => {
-            console.log(msg)
+        socketStore.addListener('startGame', (color: string) => {
+            if (sessionId !== tg.initDataUnsafe?.user?.username && sessionId) setEnemyUsername(sessionId)
             setSearchParams(params => {
-                params.set('color', msg)
+                params.set('color', color)
                 return params
             })
             setBlockedBoard(false)
