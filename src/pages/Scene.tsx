@@ -7,8 +7,7 @@ import socketStore from "../store/SocketStore";
 import PlayerComponent from "../components/PlayerComponent";
 import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
-import SocketStore from "../store/SocketStore";
-import {Cell} from "../models/Cell";
+import {useTelegram} from "../hooks/useTelegram";
 
 
 const Scene = () => {
@@ -17,6 +16,7 @@ const Scene = () => {
     const [currentPlayer, setCurrentPlayer] = useState<Colors>(Colors.WHITE)
     const [blockedBoard, setBlockedBoard] = useState<boolean>(true)
     const [searchParams, setSearchParams] = useSearchParams();
+    const {tg} = useTelegram()
 
     const sessionId = useParams().id
 
@@ -75,8 +75,8 @@ const Scene = () => {
 
 
     return (
-        <div className='main'>
-            <PlayerComponent playerName={'Player 2'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
+        <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
+            <PlayerComponent playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
                 setBoard={setBoard}
@@ -84,7 +84,7 @@ const Scene = () => {
                 board={board}
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
             />
-            <PlayerComponent playerName={'Player 1'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
+            <PlayerComponent playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
         </div>
     );
 };

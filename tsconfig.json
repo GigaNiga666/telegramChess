@@ -7,7 +7,6 @@
     ],
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/telegram-webapps-types/dist"
     ],
     "target": "es5",
     "lib": [
@@ -32,6 +31,5 @@
   "include": [
     "src",
     "global.d.ts",
-    "node_modules/telegram-webapps-types/dist/index.d.ts"
   ]
 }

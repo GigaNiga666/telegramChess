@@ -7,7 +7,7 @@ import {useTelegram} from "../hooks/useTelegram";
 interface IPlayerComponentProps {
     currentPlayer: Colors,
     playerColor: Colors,
-    playerName: string
+    playerName: string | undefined
 }
 
 const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor, playerName}) => {

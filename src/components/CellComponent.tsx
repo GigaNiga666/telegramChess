@@ -22,7 +22,6 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
     let startX = 0, startY = 0
 
     function onMouseDown(e: React.MouseEvent) {
-        //@ts-ignore
         if (!clickIsPossible(cell) || cell.figure?.color !== currentPlayer || e.button !== 0 || tg.platform !== 'tdesktop') return false
 
         click(cell)
