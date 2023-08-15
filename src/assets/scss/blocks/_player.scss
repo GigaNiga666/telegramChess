@@ -12,8 +12,7 @@
   font-size: 25px;
 }
 
-.player .blackTheme {
-
+.player.blackTheme {
   .player__name {
     color: white;
   }
@@ -23,7 +22,7 @@
   }
 }
 
-.player .lightTheme {
+.player.lightTheme {
   .player__name {
     color: black;
   }
