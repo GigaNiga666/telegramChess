@@ -5,15 +5,30 @@
   height: 50px;
   align-items: center;
   padding: 0 10px;
-
-  &__name {
-    color: black;
-  }
 }
 
 .timer {
   font-weight: 600;
   font-size: 25px;
-  color: black;
+}
 
+.player .blackTheme {
+
+  .player__name {
+    color: white;
+  }
+
+  .timer {
+    color: white;
+  }
+}
+
+.player .lightTheme {
+  .player__name {
+    color: black;
+  }
+
+  .timer {
+    color: black;
+  }
 }
