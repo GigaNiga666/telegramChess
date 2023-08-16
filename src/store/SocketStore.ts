@@ -3,19 +3,18 @@ import {Player} from "../models/Player";
 import {Colors} from "../models/Colors";
 import {io, Socket} from "socket.io-client";
 
-const BACKEND_URL = "https://telegram-bot-chess-backend.onrender.com"
-
 class Store {
 
     public socket : Socket | undefined;
     private events : {eventName : string, callback : any}[] = [];
+    public BACKEND_URL = "https://telegram-bot-chess-backend.onrender.com"
 
     constructor() {
         makeAutoObservable(this)
     }
 
     createSocket() {
-        this.socket = io(BACKEND_URL);
+        this.socket = io(this.BACKEND_URL);
 
         for (const event of this.events) {
             this.socket.on(event.eventName, event.callback)

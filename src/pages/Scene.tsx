@@ -16,7 +16,7 @@ const Scene = () => {
     const [currentPlayer, setCurrentPlayer] = useState<Colors>(Colors.WHITE)
     const [blockedBoard, setBlockedBoard] = useState<boolean>(true)
     const [searchParams, setSearchParams] = useSearchParams();
-    const {tg} = useTelegram()
+    const {tg, queryId, user} = useTelegram()
     const [enemyUsername, setEnemyUsername] = useState<string | null>(null)
 
     const sessionId = useParams().id
@@ -28,14 +28,24 @@ const Scene = () => {
 
         restart()
 
-        Store.setGameIsEnd(() => {
-            console.log('game end')
-            navigate('/')
+        Store.setGameIsEnd((winnerColor) => {
+
+            const winnerName = searchParams.get('color') === winnerColor ? user?.username : sessionId
+
+            fetch(socketStore.BACKEND_URL, {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({winnerName, queryId})
+            })
+
+            tg.close()
         })
 
         socketStore.createSocket()
 
-        socketStore.socket?.emit('initGame', sessionId, tg.initDataUnsafe?.user?.username)
+        socketStore.socket?.emit('initGame', sessionId, user?.username)
 
         socketStore.addListener('newPlayerJoin', (username: string) => {
             setEnemyUsername(username)

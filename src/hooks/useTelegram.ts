@@ -3,6 +3,8 @@ const tg = Telegram.WebApp
 
 export function useTelegram() {
     return {
-        tg
+        tg,
+        user: tg.initDataUnsafe.user,
+        queryId: tg.initDataUnsafe.query_id
     }
 }

@@ -9,20 +9,18 @@ class Store {
     firstStepIsDone = false
     currentFigure : HTMLImageElement | null = null
     takeDownCell : Cell | null = null
-    gameIsEnd : null | (() => void) = null
+    gameIsEnd : null | ((winnerColor : string) => void) = null
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    setGameIsEnd(callback : () => void) {
+    setGameIsEnd(callback : (winnerColor : string) => void) {
         this.gameIsEnd = callback
     }
 
-    onGameEnd(LosePlayer : Colors) {
-        console.log('Win: ', LosePlayer)
-        if (this.gameIsEnd) this.gameIsEnd()
-        this.firstStepIsDone = false
+    onGameEnd(WinPlayer : Colors) {
+        if (this.gameIsEnd) this.gameIsEnd(WinPlayer)
     }
 
     setFirstStep(bool : boolean) {
