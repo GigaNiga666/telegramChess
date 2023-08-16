@@ -33,7 +33,7 @@ const Scene = () => {
 
             const winnerName = searchParams.get('color') === winnerColor ? user?.username : sessionId
 
-            await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', 'Привет модопрп')
+            await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {message: 'KFGOGKJ:GOF222'})
 
             tg.close()
         })
