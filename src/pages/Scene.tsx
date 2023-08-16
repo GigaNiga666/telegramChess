@@ -8,6 +8,7 @@ import PlayerComponent from "../components/PlayerComponent";
 import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
 import {useTelegram} from "../hooks/useTelegram";
+import axios from "axios";
 
 
 const Scene = () => {
@@ -28,19 +29,13 @@ const Scene = () => {
 
         restart()
 
-        Store.setGameIsEnd((winnerColor) => {
+        Store.setGameIsEnd(async (winnerColor) => {
 
             const winnerName = searchParams.get('color') === winnerColor ? user?.username : sessionId
 
-            fetch('https://telegram-bot-chess-backend.onrender.com/web-data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({winnerName, queryId})
-            })
+            await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', JSON.stringify({winnerName, queryId}))
 
-            tg.showAlert(JSON.stringify({winnerName, queryId}))
+            tg.close()
         })
 
         socketStore.createSocket()
