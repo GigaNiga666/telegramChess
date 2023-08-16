@@ -32,15 +32,15 @@ const Scene = () => {
 
             const winnerName = searchParams.get('color') === winnerColor ? user?.username : sessionId
 
-            fetch(socketStore.BACKEND_URL, {
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
+            fetch('https://telegram-bot-chess-backend.onrender.com/web-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({winnerName, queryId})
             })
 
-            tg.close()
+            tg.showAlert(JSON.stringify({winnerName, queryId}))
         })
 
         socketStore.createSocket()
