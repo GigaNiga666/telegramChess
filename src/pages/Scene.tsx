@@ -58,7 +58,7 @@ const Scene = () => {
         })
 
         socketStore.addListener('startGame', (color: string) => {
-            if (sessionId === tg.initDataUnsafe?.user?.username && sessionId) setEnemyUsername(sessionId)
+            if (sessionId !== tg.initDataUnsafe?.user?.username && sessionId) setEnemyUsername(sessionId)
             setSearchParams(params => {
                 params.set('color', color)
                 return params
