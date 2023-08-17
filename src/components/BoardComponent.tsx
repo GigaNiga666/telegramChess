@@ -119,6 +119,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     <React.Fragment key={index}>
                         {row.map((cell, i) =>
                             <CellComponent
+                                selectedCell={selectedCell}
                                 currentPlayer={currentPlayer}
                                 clickIsPossible={clickIsPossible}
                                 click={click}

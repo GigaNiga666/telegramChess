@@ -46,7 +46,7 @@ const Scene = () => {
 
         socketStore.createSocket()
 
-        socketStore.socket?.emit('initGame', sessionId, user?.username)
+        socketStore.socket?.emit('initGame', sessionId, tg.initDataUnsafe?.user?.username)
 
         socketStore.addListener('newPlayerJoin', (username: string) => {
             setEnemyUsername(username)

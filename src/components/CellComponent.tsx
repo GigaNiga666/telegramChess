@@ -1,8 +1,9 @@
-import React, {FC, TouchEventHandler, useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import {Cell} from "../models/Cell";
 import Store from "../store/Store";
 import {Colors} from "../models/Colors";
 import {useTelegram} from "../hooks/useTelegram";
+import {FiguresName} from "../models/figures/Figure";
 
 interface ICellComponentProps {
     cell: Cell,
@@ -10,11 +11,12 @@ interface ICellComponentProps {
     click: (cell: Cell, selected?: boolean) => void,
     clickIsPossible: (cell: Cell) => boolean,
     currentPlayer: Colors | null,
-    coordsCell: string
+    coordsCell: string,
+    selectedCell : Cell | null
 }
 
 
-const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, coordsCell}) => {
+const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, coordsCell, selectedCell}) => {
 
     const figure = useRef<HTMLImageElement>(null)
     const {tg} = useTelegram()
@@ -139,7 +141,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchCancel}
-            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || cell.takedown) ? ' available-figure' : ''}`}>
+            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}`}>
 
             {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}
             {cell.figure?.logo &&
