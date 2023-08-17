@@ -29,11 +29,11 @@ const Scene = () => {
 
         restart()
 
-        Store.setGameIsEnd(async (winnerColor) => {
+        Store.setGameIsEnd((winnerColor) => {
 
-            const winnerName = searchParams.get('color') === winnerColor ? user?.username : sessionId
+            const isWin = searchParams.get('color') === winnerColor
 
-            axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {winnerName, queryId})
+            axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {isWin, queryId})
 
             tg.close()
         })
