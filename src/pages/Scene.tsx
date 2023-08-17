@@ -35,7 +35,10 @@ const Scene = () => {
 
             await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {isWin, queryId})
 
-            tg.close()
+            tg.showAlert('Победа '+ winnerColor === Colors.WHITE ? 'белых': 'чёрных')
+
+            tg.MainButton.setText('Выйти к боту')
+            tg.MainButton.show()
         })
 
         socketStore.createSocket()
