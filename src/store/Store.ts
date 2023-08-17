@@ -10,9 +10,14 @@ class Store {
     currentFigure : HTMLImageElement | null = null
     takeDownCell : Cell | null = null
     gameIsEnd : null | ((winnerColor : string) => void) = null
+    blockTimer : boolean = false
 
     constructor() {
         makeAutoObservable(this)
+    }
+
+    setBlockTimer(bool : boolean) {
+        this.blockTimer = bool
     }
 
     setGameIsEnd(callback : (winnerColor : string) => void) {

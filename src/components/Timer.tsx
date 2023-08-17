@@ -12,7 +12,7 @@ interface ITimerProps {
 
 const Timer: FC<ITimerProps> = ({currentPlayer, color, firstStepIsDone}) => {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 10);
+    time.setSeconds(time.getSeconds() + 600);
     const {seconds, minutes, pause, resume} = useTimer({
         expiryTimestamp: time,
         onExpire: () => Store.onGameEnd(currentPlayer === Colors.WHITE ? Colors.BLACK : Colors.WHITE),
@@ -21,7 +21,7 @@ const Timer: FC<ITimerProps> = ({currentPlayer, color, firstStepIsDone}) => {
 
 
     useEffect(() => {
-        if (currentPlayer === color && (firstStepIsDone === undefined || firstStepIsDone)) {
+        if (!Store.blockTimer && currentPlayer === color && (firstStepIsDone === undefined || firstStepIsDone)) {
             resume()
         } else {
             pause()
