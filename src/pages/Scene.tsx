@@ -34,8 +34,9 @@ const Scene = () => {
             const isWin = searchParams.get('color') === winnerColor
 
             setBlockedBoard(true)
+            Store.setFirstStep(true)
 
-            tg.showAlert('Победа '+ winnerColor === Colors.WHITE ? 'белых': 'чёрных')
+            tg.showAlert(`Победа ${winnerColor === Colors.WHITE ? 'белых': 'чёрных'}`)
 
             tg.MainButton.setText('Выйти к боту')
             tg.MainButton.show()

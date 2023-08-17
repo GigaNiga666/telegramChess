@@ -12,7 +12,7 @@ interface ITimerProps {
 
 const Timer: FC<ITimerProps> = ({currentPlayer, color, firstStepIsDone}) => {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 600);
+    time.setSeconds(time.getSeconds() + 10);
     const {seconds, minutes, pause, resume} = useTimer({
         expiryTimestamp: time,
         onExpire: () => Store.onGameEnd(currentPlayer === Colors.WHITE ? Colors.BLACK : Colors.WHITE),
