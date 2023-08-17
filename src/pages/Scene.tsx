@@ -33,12 +33,15 @@ const Scene = () => {
 
             const isWin = searchParams.get('color') === winnerColor
 
-            await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {isWin, queryId})
+            setBlockedBoard(true)
 
             tg.showAlert('Победа '+ winnerColor === Colors.WHITE ? 'белых': 'чёрных')
 
             tg.MainButton.setText('Выйти к боту')
             tg.MainButton.show()
+            tg.MainButton.onClick(async () => {
+                await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {isWin, queryId})
+            })
         })
 
         socketStore.createSocket()
