@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Board} from "../models/Board";
 import {Colors} from "../models/Colors";
 import BoardComponent from "../components/BoardComponent";
@@ -20,13 +20,19 @@ const Scene = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const {tg, queryId, user} = useTelegram()
     const [enemyUsername, setEnemyUsername] = useState<string | null>(null)
-
     const sessionId = useParams().id
 
-    const navigate = useNavigate();
+    tg.onEvent('themeChanged', () => {
+        themeSetup()
+    })
+
+    function themeSetup() {
+        document.body.classList.add(`${tg.colorScheme === 'dark' ? 'blackTheme' : 'lightTheme'}`)
+    }
 
 
     useEffect(() => {
+        themeSetup()
 
         restart()
 

@@ -11,24 +11,8 @@ interface IPlayerComponentProps {
 }
 
 const PlayerComponent: FC<IPlayerComponentProps> = ({currentPlayer, playerColor, playerName}) => {
-    const {tg} = useTelegram()
-    const player = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        themeSetup()
-    }, [])
-
-
-    tg.onEvent('themeChanged', () => {
-        themeSetup()
-    })
-
-    function themeSetup() {
-        if (player.current) player.current.classList.add(`${tg.colorScheme === 'dark' ? 'blackTheme' : 'lightTheme'}`)
-    }
-
     return (
-        <div ref={player} className='player'>
+        <div className='player'>
             <span className="player__name">{playerName}</span>
             <Timer currentPlayer={currentPlayer} color={playerColor} firstStepIsDone={Store.firstStepIsDone}/>
         </div>
