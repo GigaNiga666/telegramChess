@@ -27,7 +27,7 @@ const Scene = () => {
     })
 
     function themeSetup() {
-        document.body.classList.add(`${tg.colorScheme === 'dark' ? 'blackTheme' : 'lightTheme'}`)
+        document.body.classList.add(`${tg.colorScheme === 'light' ? 'lightTheme' : 'blackTheme'}`)
     }
 
 
@@ -95,7 +95,7 @@ const Scene = () => {
 
     return (
         <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
-            <PlayerComponent playerName={enemyUsername ? enemyUsername : 'Ожидаем соперника...'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
+            <PlayerComponent reverse={false} playerName={enemyUsername} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
                 setBoard={setBoard}
@@ -103,7 +103,7 @@ const Scene = () => {
                 board={board}
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
             />
-            <PlayerComponent playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
+            <PlayerComponent reverse={true} playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
             <GameButtonsComponent/>
         </div>
     );
