@@ -6,9 +6,7 @@
 
   &__wrapper {
     display: flex;
-    background: linear-gradient(135deg, rgba(var(--tg-theme-secondary-bg-color), 0.2), rgba(var(--tg-theme-secondary-bg-color), 0.1));
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background-color: var(--tg-theme-secondary-bg-color);
     padding: 5px 20px;
     gap: 40px;
     border-radius: 30px;
