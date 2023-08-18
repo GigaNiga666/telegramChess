@@ -2,10 +2,14 @@
   display: flex;
   justify-content: center;
   gap: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   &__btn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     padding: 5px;
     background-color: #232E3C;
     border-radius: 10px;
