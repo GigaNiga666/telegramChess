@@ -29,6 +29,8 @@ const Scene = () => {
 
         restart()
 
+        tg.showAlert(tg.initDataUnsafe?.user?.photo_url)
+
         Store.setGameIsEnd(async (winnerColor) => {
 
             const isWin = searchParams.get('color') === winnerColor
