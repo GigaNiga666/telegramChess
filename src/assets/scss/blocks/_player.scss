@@ -13,23 +13,3 @@
   font-weight: 600;
   font-size: 25px;
 }
-
-body.blackTheme .player{
-  .player__name {
-    color: white;
-  }
-
-  .timer {
-    color: white;
-  }
-}
-
-body.lightTheme .player {
-  .player__name {
-    color: black;
-  }
-
-  .timer {
-    color: black;
-  }
-}

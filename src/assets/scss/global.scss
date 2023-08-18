@@ -4,6 +4,14 @@ body {
   background-color: var(--tg-theme-bg-color);
   font-family: 'Nunito', sans-serif;
   overflow: hidden;
+
+  &.lightTheme {
+    color: black;
+  }
+
+  &.blackTheme {
+    color: white;
+  }
 }
 
 .main {
