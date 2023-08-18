@@ -1,17 +1,21 @@
 .game-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
   position: absolute;
-  bottom: 20px;
+  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
+
+  &__wrapper {
+    display: flex;
+    background-color: #232E3C;
+    padding: 5px 20px;
+    gap: 40px;
+    border-radius: 30px;
+  }
 
   &__btn {
     width: 40px;
     height: 40px;
     padding: 5px;
-    background-color: #232E3C;
     border-radius: 10px;
   }
 }
