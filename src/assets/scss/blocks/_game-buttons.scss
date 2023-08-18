@@ -6,7 +6,9 @@
 
   &__wrapper {
     display: flex;
-    background-color: #232E3C;
+    background: linear-gradient(135deg, rgba(#232E3C, 0.2), rgba(#232E3C, 0.1));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     padding: 5px 20px;
     gap: 40px;
     border-radius: 30px;
