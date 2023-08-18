@@ -9,7 +9,6 @@ import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
 import {useTelegram} from "../hooks/useTelegram";
 import axios from "axios";
-import GameButtonsComponent from "../components/GameButtonsComponent";
 
 
 const Scene = () => {
@@ -104,7 +103,6 @@ const Scene = () => {
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
             />
             <PlayerComponent reverse={true} playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
-            <GameButtonsComponent/>
         </div>
     );
 };
