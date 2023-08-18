@@ -29,8 +29,6 @@ const Scene = () => {
 
         restart()
 
-        tg.showAlert(tg.initDataUnsafe?.user?.photo_url)
-
         Store.setGameIsEnd(async (winnerColor) => {
 
             const isWin = searchParams.get('color') === winnerColor
@@ -90,6 +88,7 @@ const Scene = () => {
 
     return (
         <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
+            <span>{tg.initDataUnsafe?.user?.photo_url}</span>
             <PlayerComponent playerName={enemyUsername ? enemyUsername : 'Ожидаем соперника...'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
