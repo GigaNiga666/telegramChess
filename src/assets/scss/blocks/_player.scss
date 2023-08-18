@@ -3,7 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  background-color: #232E3C;
+  background: linear-gradient(135deg, rgba(#232E3C, 0.2), rgba(#232E3C, 0.1));
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 21px 3px rgba(#000000, 0.87);
 }
 
 .timer {
