@@ -23,17 +23,21 @@
 }
 
 .selected {
-  background-color: #B53E24;
+  background-color: #B1A7FC;
 }
 
 .available {
-  background-color: rgba(#363D34, 0.3);
+  background-color: #7B61FF;
   border-radius: 50%;
-  width: 40%;
-  height: 40%;
+  width: 55%;
+  height: 55%;
   pointer-events: none;
+  position: relative;
+  z-index: 1;
 
   &-figure {
-    background-color: #BBCB2B ;
+    background-color: #EDBEC7 ;
+    position: relative;
+    z-index: 2;
   }
 }
