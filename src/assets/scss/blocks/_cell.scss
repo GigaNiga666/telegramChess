@@ -9,8 +9,8 @@
   user-select: none;
 
   &__img {
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
   }
 }
 
@@ -24,20 +24,19 @@
 
 .selected {
   background-color: #B1A7FC;
+  transition: all 0.2s ease-in-out;
 }
 
 .available {
   background-color: #7B61FF;
   border-radius: 50%;
-  width: 55%;
-  height: 55%;
+  width: 30%;
+  height: 30%;
   pointer-events: none;
-  position: relative;
-  z-index: 1;
+  transition: all 0.2s ease-in-out;
 
   &-figure {
     background-color: #EDBEC7 ;
-    position: relative;
-    z-index: 2;
+    transition: all 0.2s ease-in-out;
   }
 }

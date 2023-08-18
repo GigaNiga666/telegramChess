@@ -143,7 +143,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             onTouchCancel={onTouchCancel}
             className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}`}>
 
-            {cell.available && !cell.takedown && <div className='available'/>}
+            {cell.available && !cell.takedown && !cell.figure && <div className='available'/>}
             {cell.figure?.logo &&
             <img
                 ref={figure}
