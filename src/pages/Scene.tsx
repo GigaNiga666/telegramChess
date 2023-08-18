@@ -9,6 +9,7 @@ import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
 import {useTelegram} from "../hooks/useTelegram";
 import axios from "axios";
+import GameButtonsComponent from "../components/GameButtonsComponent";
 
 
 const Scene = () => {
@@ -87,8 +88,7 @@ const Scene = () => {
 
 
     return (
-        <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
-            <span>{tg.initDataUnsafe?.user?.photo_url}</span>
+        <div className='main'>
             <PlayerComponent playerName={enemyUsername ? enemyUsername : 'Ожидаем соперника...'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}
@@ -98,6 +98,7 @@ const Scene = () => {
                 playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}
             />
             <PlayerComponent playerName={tg.initDataUnsafe?.user?.username} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'black' ? Colors.BLACK : Colors.WHITE}/>
+            <GameButtonsComponent/>
         </div>
     );
 };

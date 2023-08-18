@@ -1,14 +1,14 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-color: var(--tg-theme-bg-color);
+  //background-color: var(--tg-theme-bg-color);
+  background-color: #17212B;
   font-family: 'Nunito', sans-serif;
   overflow: hidden;
 }
 
 .main {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
