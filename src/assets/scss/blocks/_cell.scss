@@ -7,6 +7,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: relative;
 
   &__img {
     width: 80%;
@@ -38,5 +39,10 @@
   &-figure {
     background-color: #EDBEC7 ;
     transition: all 0.2s ease-in-out;
+  }
+
+  &-none {
+    background-color: transparent;
+    position: absolute;
   }
 }
