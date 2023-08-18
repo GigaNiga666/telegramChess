@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  background: linear-gradient(135deg, rgba(var(--tg-theme-secondary-bg-color), 0.2), rgba(var(--tg-theme-secondary-bg-color), 0.1));
+  background: var(--tg-theme-secondary-bg-color);
 }
 
 .timer {
