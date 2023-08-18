@@ -88,7 +88,7 @@ const Scene = () => {
 
 
     return (
-        <div className='main'>
+        <div className='main' style={{pointerEvents: blockedBoard ? 'none' : 'unset'}}>
             <PlayerComponent playerName={enemyUsername ? enemyUsername : 'Ожидаем соперника...'} currentPlayer={currentPlayer} playerColor={searchParams.get('color') === 'white' ? Colors.BLACK : Colors.WHITE}/>
             <BoardComponent
                 setCurrentPlayer={setCurrentPlayer}

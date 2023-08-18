@@ -6,11 +6,9 @@ import iconExit from '../assets/images/icons/icon-exit.svg'
 const GameButtonsComponent = () => {
     return (
         <div className='game-buttons'>
-            <div className="game-buttons__wrapper">
-                <button className="game-buttons__exit"><img src={iconExit} alt=""/></button>
-                <button className="game-buttons__takedown"><img src={iconTakeDown} alt=""/></button>
-                <button className="game-buttons__over"><img src={iconFlag} alt=""/></button>
-            </div>
+            <button className="game-buttons__btn"><img src={iconExit} alt=""/></button>
+            <button className="game-buttons__btn"><img src={iconTakeDown} alt=""/></button>
+            <button className="game-buttons__btn"><img src={iconFlag} alt=""/></button>
         </div>
     );
 };
