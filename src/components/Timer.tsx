@@ -30,7 +30,7 @@ const Timer: FC<ITimerProps> = ({currentPlayer, color, firstStepIsDone}) => {
 
     return (
         <span className='timer'>
-            {minutes}:{seconds === 0 ? '00' : seconds < 10 ? `0${seconds}` : seconds}
+            {minutes < 10 ? `0${minutes}` : minutes}:{seconds === 0 ? '00' : seconds < 10 ? `0${seconds}` : seconds}
         </span>
     );
 };

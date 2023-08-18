@@ -23,3 +23,10 @@ body {
   position: relative;
   gap: 30px;
 }
+
+
+@media (max-height: 650px) {
+    .main {
+      gap: 5px;
+    }
+}
