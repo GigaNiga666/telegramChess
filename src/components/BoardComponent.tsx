@@ -8,16 +8,12 @@ import ModalChoice from "./Modal-Choice";
 import {FiguresName} from "../models/figures/Figure";
 import socketStore from "../store/SocketStore";
 import Store from "../store/Store";
-import LostFiguresComponent from "./LostFiguresComponent";
-import useSound from "use-sound";
-import moveSound from '../assets/audio/move.mp3'
-import captureSound from '../assets/audio/capture.mp3'
 
 interface IBoardComponentProps {
     board: Board,
     setBoard: (board: Board) => void,
     currentPlayer: Colors,
-    setCurrentPlayer : (color : Colors) => void
+    setCurrentPlayer: (color: Colors) => void
     playerColor: Colors | null
 }
 
@@ -25,7 +21,7 @@ interface IMoveProps {
     to: { x: number; y: number; },
     from: { x: number; y: number; },
     color: Colors,
-    figure : string
+    figure: string
 }
 
 const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurrentPlayer, playerColor, setBoard}) => {
@@ -34,8 +30,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
     const [modal, setModal] = useState<boolean>(false)
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
     const [passedPawn, setPassedPawn] = useState<Cell | null>(null)
-    const [playMove] = useSound(moveSound)
-    const [playCapture] = useSound(captureSound)
+
 
     useEffect(() => {
         socketStore.addListener('newMove', (props: IMoveProps) => {
@@ -49,13 +44,13 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
         highLightCells()
     }, [selectedCell])
 
-    function clickIsPossible(cell: Cell) : boolean {
+    function clickIsPossible(cell: Cell): boolean {
         if (modal || currentPlayer !== playerColor) return false
         return true
     }
 
-    function click(cell: Cell, selected : boolean = false) {
-        if (selected && !selectedCell?.isPassedPawn(cell)){
+    function click(cell: Cell, selected: boolean = false) {
+        if (selected && !selectedCell?.isPassedPawn(cell)) {
             setSelectedCell(null)
             return
         }
@@ -67,9 +62,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
             if (selectedCell.isPassedPawn(cell)) {
                 setModal(true)
                 setPassedPawn(cell)
-            }
-            else
-            {
+            } else {
                 socketStore.socket?.emit('newMove', {
                     to: {x: cell.x, y: cell.y},
                     from: {x: selectedCell.x, y: selectedCell.y},
@@ -82,7 +75,6 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
             if (currentPlayer === cell.figure.color)
                 setSelectedCell(cell)
     }
-
 
 
     function highLightCells() {

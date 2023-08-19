@@ -231,7 +231,7 @@ export class Cell {
     cutTheFigure(targetFigure : Figure) {
         this.board.figures = this.board.figures.filter(figure => figure.id !== targetFigure.id)
         this.addLostFigure(targetFigure as Figure)
-        Store.playCapture()
+        if (Store.playCapture) Store.playCapture()
     }
 
     moveFigure(target : Cell, targetFigure : FiguresName | string = FiguresName.FIGURE) {
@@ -245,7 +245,7 @@ export class Cell {
                 this.cutTheFigure(target.figure)
             }
             else {
-                Store.playMove()
+                if (Store.playMove) Store.playMove()
             }
             switch (targetFigure) {
                 case FiguresName.FIGURE:
