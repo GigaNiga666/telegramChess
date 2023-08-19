@@ -23,6 +23,7 @@
     "telegram-webapps-types": "^1.0.5",
     "typescript": "^4.9.5",
     "typescript-plugin-css-modules": "^5.0.1",
+    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -11,6 +11,7 @@ import {useTelegram} from "../hooks/useTelegram";
 import axios from "axios";
 
 
+
 const Scene = () => {
 
     const [board, setBoard] = useState<Board>(initBoard())
@@ -58,9 +59,10 @@ const Scene = () => {
             setEnemyUsername(username)
         })
 
-        socketStore.addListener('playerLeave', (msg: string) => {
+        socketStore.addListener('playerLeave', async () => {
             restart()
-            console.log(msg)
+            await axios.post('https://telegram-bot-chess-backend.onrender.com/web-data', {isWin : true, queryId})
+            tg.close()
         })
 
         socketStore.addListener('startGame', (color: string) => {

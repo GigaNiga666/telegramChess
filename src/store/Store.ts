@@ -2,6 +2,10 @@ import {makeAutoObservable} from "mobx";
 import {Player} from "../models/Player";
 import {Cell} from "../models/Cell";
 import {Colors} from "../models/Colors";
+import useSound from "use-sound";
+import moveSound from "../assets/audio/move.mp3";
+import captureSound from "../assets/audio/capture.mp3";
+import {PlayFunction} from "use-sound/dist/types";
 
 
 class Store {
@@ -11,6 +15,8 @@ class Store {
     takeDownCell : Cell | null = null
     gameIsEnd : null | ((winnerColor : string) => void) = null
     blockTimer : boolean = false
+    playMove : PlayFunction = useSound(moveSound)[0]
+    playCapture : PlayFunction = useSound(captureSound)[0]
 
     constructor() {
         makeAutoObservable(this)

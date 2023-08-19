@@ -21,7 +21,6 @@ export class Cell {
     takedown : boolean;
     id : number;
 
-
     constructor(x: number, y: number, color: Colors, figure: Figure | null,board: Board) {
         this.x = x;
         this.y = y;
@@ -232,6 +231,7 @@ export class Cell {
     cutTheFigure(targetFigure : Figure) {
         this.board.figures = this.board.figures.filter(figure => figure.id !== targetFigure.id)
         this.addLostFigure(targetFigure as Figure)
+        Store.playCapture()
     }
 
     moveFigure(target : Cell, targetFigure : FiguresName | string = FiguresName.FIGURE) {
@@ -243,6 +243,9 @@ export class Cell {
             this.figure.moveFigure()
             if (target.figure){
                 this.cutTheFigure(target.figure)
+            }
+            else {
+                Store.playMove()
             }
             switch (targetFigure) {
                 case FiguresName.FIGURE:

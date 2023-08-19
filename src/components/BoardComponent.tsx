@@ -9,6 +9,9 @@ import {FiguresName} from "../models/figures/Figure";
 import socketStore from "../store/SocketStore";
 import Store from "../store/Store";
 import LostFiguresComponent from "./LostFiguresComponent";
+import useSound from "use-sound";
+import moveSound from '../assets/audio/move.mp3'
+import captureSound from '../assets/audio/capture.mp3'
 
 interface IBoardComponentProps {
     board: Board,
@@ -31,6 +34,8 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
     const [modal, setModal] = useState<boolean>(false)
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
     const [passedPawn, setPassedPawn] = useState<Cell | null>(null)
+    const [playMove] = useSound(moveSound)
+    const [playCapture] = useSound(captureSound)
 
     useEffect(() => {
         socketStore.addListener('newMove', (props: IMoveProps) => {
