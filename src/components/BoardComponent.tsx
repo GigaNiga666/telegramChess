@@ -38,8 +38,10 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
         socketStore.addListener('newMove', (props: IMoveProps) => {
             if (!Store.firstStepIsDone) Store.setFirstStep(true)
             const targetCell = board.getCell(props.to.x, props.to.y)
-            moveFigure(targetCell, board.getCell(props.from.x, props.from.y), props.figure)
+            const startCell = board.getCell(props.from.x, props.from.y)
+            moveFigure(targetCell, startCell, props.figure)
             setCurrentPlayer(props.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE)
+            setPrevMoveCell(startCell)
             setTargetMoveCell(targetCell)
         })
     }, [])
@@ -73,7 +75,6 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     color: playerColor,
                     figure: FiguresName.FIGURE
                 })
-                setPrevMoveCell(selectedCell)
             }
 
         } else if (cell.figure)
