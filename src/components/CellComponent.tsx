@@ -143,11 +143,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchCancel}
-            className={`cell 
-            ${cell.color}${selected ? ' selected' : ''}
-            ${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}
-            ${prevMove ? ' prevMove' : ''}
-            ${targetMove ? ' targetMove' : ''}`}>
+            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}${prevMove ? ' prevMove' : ''}${targetMove ? ' targetMove' : ''}`}>
 
             {<div className={`available ${cell.available && !cell.takedown && !cell.figure ? '' : 'available-none'}`}/>  }
             {cell.figure?.logo &&
