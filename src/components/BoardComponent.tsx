@@ -121,7 +121,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     <React.Fragment key={index}>
                         {row.map((cell, i) =>
                             <CellComponent
-                                targetMove={targetMoveCell?.x === cell.x && targetMoveCell?.x === cell.x}
+                                targetMove={targetMoveCell?.x === cell.x && targetMoveCell?.y === cell.y}
                                 selectedCell={selectedCell}
                                 prevMove={prevMoveCell?.y === cell.y && prevMoveCell?.x === cell.x}
                                 currentPlayer={currentPlayer}
