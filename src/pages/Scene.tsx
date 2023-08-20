@@ -11,8 +11,6 @@ import {useTelegram} from "../hooks/useTelegram";
 import axios from "axios";
 
 
-
-
 const Scene = () => {
 
     const [board, setBoard] = useState<Board>(initBoard())

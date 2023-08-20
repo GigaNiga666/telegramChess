@@ -1,11 +1,6 @@
 import {makeAutoObservable} from "mobx";
-import {Player} from "../models/Player";
 import {Cell} from "../models/Cell";
 import {Colors} from "../models/Colors";
-import useSound from "use-sound";
-import moveSound from "../assets/audio/move.mp3";
-import captureSound from "../assets/audio/capture.mp3";
-import {PlayFunction} from "use-sound/dist/types";
 
 
 class Store {
