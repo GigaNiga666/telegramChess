@@ -13,12 +13,11 @@ interface ICellComponentProps {
     currentPlayer: Colors | null,
     coordsCell: string,
     selectedCell : Cell | null,
-    prevMove : boolean,
-    targetMove : boolean
+    move : boolean
 }
 
 
-const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, coordsCell, selectedCell,prevMove,targetMove}) => {
+const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsPossible, currentPlayer, coordsCell, selectedCell,move}) => {
 
     const figure = useRef<HTMLImageElement>(null)
     const {tg} = useTelegram()
@@ -143,7 +142,7 @@ const CellComponent: FC<ICellComponentProps> = ({cell, selected, click, clickIsP
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             onTouchCancel={onTouchCancel}
-            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}${prevMove ? ' prevMove' : ''}${targetMove ? ' targetMove' : ''}`}>
+            className={`cell ${cell.color}${selected ? ' selected' : ''}${cell.available && (cell.figure || (cell.takedown && selectedCell?.figure?.name === FiguresName.PAWN)) ? ' available-figure' : ''}${move ? ' move' : ''}`}>
 
             {<div className={`available ${cell.available && !cell.takedown && !cell.figure ? '' : 'available-none'}`}/>  }
             {cell.figure?.logo &&
