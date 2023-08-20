@@ -122,8 +122,8 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                         {row.map((cell, i) =>
                             <CellComponent
                                 targetMove={targetMoveCell?.x === cell.x && targetMoveCell?.x === cell.x}
-                                prevMove={prevMoveCell?.y === cell.y && prevMoveCell?.x === cell.x}
                                 selectedCell={selectedCell}
+                                prevMove={prevMoveCell?.y === cell.y && prevMoveCell?.x === cell.x}
                                 currentPlayer={currentPlayer}
                                 clickIsPossible={clickIsPossible}
                                 click={click}
