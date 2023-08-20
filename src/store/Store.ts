@@ -2,7 +2,6 @@ import {makeAutoObservable} from "mobx";
 import {Cell} from "../models/Cell";
 import {Colors} from "../models/Colors";
 
-
 class Store {
 
     firstStepIsDone = false
