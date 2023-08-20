@@ -9,9 +9,7 @@ import Store from "../store/Store";
 import {observer} from "mobx-react-lite";
 import {useTelegram} from "../hooks/useTelegram";
 import axios from "axios";
-import useSound from "use-sound";
-import moveSound from "../assets/audio/move.mp3";
-import captureSound from "../assets/audio/capture.mp3";
+
 
 
 
@@ -24,8 +22,6 @@ const Scene = () => {
     const {tg, queryId, user} = useTelegram()
     const [enemyUsername, setEnemyUsername] = useState<string | null>(null)
     const sessionId = useParams().id
-    const [playMove] = useSound(moveSound)
-    const [playCapture] = useSound(captureSound)
 
     tg.onEvent('themeChanged', () => {
         themeSetup()
@@ -37,8 +33,6 @@ const Scene = () => {
 
 
     useEffect(() => {
-        Store.setPlaySound(playMove, playCapture)
-
         themeSetup()
 
         restart()

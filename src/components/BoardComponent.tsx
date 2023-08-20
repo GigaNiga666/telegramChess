@@ -29,14 +29,18 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
 
     const [modal, setModal] = useState<boolean>(false)
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
+    const [prevMoveCell, setPrevMoveCell] = useState<Cell | null>(null)
+    const [targetMoveCell, setTargetMoveCell] = useState<Cell | null>(null)
     const [passedPawn, setPassedPawn] = useState<Cell | null>(null)
 
 
     useEffect(() => {
         socketStore.addListener('newMove', (props: IMoveProps) => {
             if (!Store.firstStepIsDone) Store.setFirstStep(true)
-            moveFigure(board.getCell(props.to.x, props.to.y), board.getCell(props.from.x, props.from.y), props.figure)
+            const targetCell = board.getCell(props.to.x, props.to.y)
+            moveFigure(targetCell, board.getCell(props.from.x, props.from.y), props.figure)
             setCurrentPlayer(props.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE)
+            setTargetMoveCell(targetCell)
         })
     }, [])
 
@@ -69,6 +73,7 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     color: playerColor,
                     figure: FiguresName.FIGURE
                 })
+                setPrevMoveCell(selectedCell)
             }
 
         } else if (cell.figure)
@@ -116,6 +121,8 @@ const BoardComponent: FC<IBoardComponentProps> = ({board, currentPlayer, setCurr
                     <React.Fragment key={index}>
                         {row.map((cell, i) =>
                             <CellComponent
+                                targetMove={targetMoveCell?.x === cell.x && targetMoveCell?.x === cell.x}
+                                prevMove={prevMoveCell?.y === cell.y && prevMoveCell?.x === cell.x}
                                 selectedCell={selectedCell}
                                 currentPlayer={currentPlayer}
                                 clickIsPossible={clickIsPossible}

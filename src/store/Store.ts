@@ -15,16 +15,9 @@ class Store {
     takeDownCell : Cell | null = null
     gameIsEnd : null | ((winnerColor : string) => void) = null
     blockTimer : boolean = false
-    playMove : PlayFunction | null = null
-    playCapture : PlayFunction | null = null
 
     constructor() {
         makeAutoObservable(this)
-    }
-
-    setPlaySound(moveSound : PlayFunction, captureSound : PlayFunction) {
-        this.playMove = moveSound
-        this.playCapture = captureSound
     }
 
     setBlockTimer(bool : boolean) {
