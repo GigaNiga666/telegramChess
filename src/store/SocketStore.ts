@@ -13,7 +13,7 @@ class Store {
     }
 
     createSocket() {
-        this.socket = io(process.env.BACKEND_URL as string);
+        this.socket = io('https://telegram-bot-chess-backend.onrender.com');
 
         for (const event of this.events) {
             this.socket.on(event.eventName, event.callback)
