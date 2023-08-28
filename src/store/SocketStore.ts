@@ -7,14 +7,13 @@ class Store {
 
     public socket : Socket | undefined;
     private events : {eventName : string, callback : any}[] = [];
-    public BACKEND_URL = "https://telegram-bot-chess-backend.onrender.com"
 
     constructor() {
         makeAutoObservable(this)
     }
 
     createSocket() {
-        this.socket = io(this.BACKEND_URL);
+        this.socket = io(process.env.BACKEND_URL as string);
 
         for (const event of this.events) {
             this.socket.on(event.eventName, event.callback)
